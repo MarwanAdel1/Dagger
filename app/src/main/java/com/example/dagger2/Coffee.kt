@@ -1,10 +1,12 @@
 package com.example.dagger2
 
 import android.util.Log
+import com.example.dagger2.dagger_component.Milk
+import com.example.dagger2.dagger_component.Sugar
 import javax.inject.Inject
 
 class Coffee @Inject constructor(
-    private val river: River,
+    val river: River,
     @Sugar private val sugar: Int,
     @Milk("milk") private val milk: Int
 ) {

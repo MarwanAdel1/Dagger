@@ -1,4 +1,4 @@
-package com.example.dagger2
+package com.example.dagger2.dagger_component
 
 import javax.inject.Qualifier
 

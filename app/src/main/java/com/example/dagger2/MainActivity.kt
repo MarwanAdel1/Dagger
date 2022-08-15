@@ -26,14 +26,19 @@ class MainActivity : AppCompatActivity() {
 //        val daggerCoffeeComponent =
 //            DaggerCoffeeComponent.builder().coffeeModule(CoffeeModule(sugar = 3)).build()
 
-        val daggerCoffeeComponent =
-            DaggerCoffeeComponent.builder().sugar(2).milk(4).build()
+        val daggerCoffeeComponent = (application as MainApplication).getDaggerCoffeeComponent()
+
+        val cof = daggerCoffeeComponent.getCoffeeInstance()
+        Log.i(
+            TAG,
+            "onCreate: Module: ${cof.getCustomCoffee()}"
+        )
 
         Log.i(
             TAG,
-            "onCreate: Module: ${daggerCoffeeComponent.getCoffeeInstance().getCustomCoffee()}"
+            "onCreate: \n Coffee : $cof" +
+                    "\nFarm : ${cof.myCustomFarm}" +
+                    "\nRiver : ${cof.river}"
         )
-
-
     }
 }
