@@ -1,8 +1,6 @@
 package com.example.dagger2
 
-import javax.inject.Inject
-
-class River @Inject constructor() {
+class River {
     fun getCustomRiver(): String {
         return "Water"
     }

@@ -3,9 +3,9 @@ package com.example.dagger2
 import android.util.Log
 import javax.inject.Inject
 
-class Coffee @Inject constructor(val farm: Farm, val river: River) {
+class Coffee @Inject constructor(private val river: River, private val sugar: Int) {
     private val TAG by lazy { "Coffee" }
-    
+
     init {
         Log.i(TAG, "Coffee constructor is called")
     }
@@ -13,8 +13,7 @@ class Coffee @Inject constructor(val farm: Farm, val river: River) {
     @Inject
     lateinit var myCustomFarm: Farm
 
-    @Inject
-    lateinit var myCustomRiver: River
+//    lateinit var myCustomRiver: River
 
     @Inject
     fun getCoffeeOrder() {
@@ -22,6 +21,7 @@ class Coffee @Inject constructor(val farm: Farm, val river: River) {
     }
 
     fun getCustomCoffee(): String {
-        return myCustomFarm.getCustomFarm() + "+" + myCustomRiver.getCustomRiver()
+        return myCustomFarm.getCustomFarm() + " + " + river.getCustomRiver()+
+                " + " + sugar + " sugar"
     }
 }

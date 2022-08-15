@@ -15,14 +15,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val daggerCoffeeComponent = DaggerCoffeeComponent.create()
-        Log.i(TAG, "onCreate: Constructor Injection: ${daggerCoffeeComponent.getCoffeeInstance()}")  /// constructor injection
+//        val daggerCoffeeComponent = DaggerCoffeeComponent.create()
+//        Log.i(TAG, "onCreate: Constructor Injection: ${daggerCoffeeComponent.getCoffeeInstance()}")  /// constructor injection
+//
+//        Log.i(TAG, "onCreate: Field Injection: ${daggerCoffeeComponent.getCoffeeInstance().getCustomCoffee()}")  /// field injection
+//
+//        daggerCoffeeComponent.inject(this)
+//        Log.i(TAG, "onCreate: Field Injection: ${coffee.getCustomCoffee()}")  /// field injection
 
-        Log.i(TAG, "onCreate: Field Injection: ${daggerCoffeeComponent.getCoffeeInstance().getCustomCoffee()}")  /// field injection
+        val daggerCoffeeComponent =
+            DaggerCoffeeComponent.builder().coffeeModule(CoffeeModule(sugar = 3)).build()
 
-        daggerCoffeeComponent.inject(this)
-        Log.i(TAG, "onCreate: Field Injection: ${coffee.getCustomCoffee()}")  /// field injection
-
+        Log.i(TAG, "onCreate: Module: ${daggerCoffeeComponent.getCoffeeInstance().getCustomCoffee()}")
 
 
     }
