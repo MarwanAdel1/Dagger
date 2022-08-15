@@ -6,23 +6,21 @@ import com.example.dagger2.dagger_component.named_annotation.Milk
 import com.example.dagger2.dagger_component.named_annotation.Sugar
 import com.example.dagger2.dagger_component.scope_annotation.ActivityScope
 import dagger.BindsInstance
-import dagger.Component
+import dagger.Subcomponent
 
 @ActivityScope
-@Component(dependencies = [AppComponent::class])
+@Subcomponent
 interface CoffeeComponent {
     fun getCoffeeInstance(): Coffee
     fun inject(mainActivity: MainActivity)
 
-    @Component.Builder
+    @Subcomponent.Builder
     interface Builder {
         @BindsInstance
         fun sugar(@Sugar("sugar") sugar: Int): Builder
 
         @BindsInstance
         fun milk(@Milk("milk") milk: Int): Builder
-
-        fun appComponent(appComponent: AppComponent): Builder
 
         fun build(): CoffeeComponent
     }

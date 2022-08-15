@@ -3,7 +3,6 @@ package com.example.dagger2
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.dagger2.dagger_component.DaggerCoffeeComponent
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         val appComponent = (application as MainApplication).getDaggerAppComponent()
 
         val coffeeComponent =
-            DaggerCoffeeComponent.builder().sugar(2).milk(4).appComponent(appComponent).build()
+            appComponent.getCoffeeComponentBuilder().sugar(2).milk(4).build()
         coffeeComponent.inject(this)
 
         Log.i(
