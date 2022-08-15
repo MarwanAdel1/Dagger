@@ -23,10 +23,16 @@ class MainActivity : AppCompatActivity() {
 //        daggerCoffeeComponent.inject(this)
 //        Log.i(TAG, "onCreate: Field Injection: ${coffee.getCustomCoffee()}")  /// field injection
 
-        val daggerCoffeeComponent =
-            DaggerCoffeeComponent.builder().coffeeModule(CoffeeModule(sugar = 3)).build()
+//        val daggerCoffeeComponent =
+//            DaggerCoffeeComponent.builder().coffeeModule(CoffeeModule(sugar = 3)).build()
 
-        Log.i(TAG, "onCreate: Module: ${daggerCoffeeComponent.getCoffeeInstance().getCustomCoffee()}")
+        val daggerCoffeeComponent =
+            DaggerCoffeeComponent.builder().sugar(2).milk(4).build()
+
+        Log.i(
+            TAG,
+            "onCreate: Module: ${daggerCoffeeComponent.getCoffeeInstance().getCustomCoffee()}"
+        )
 
 
     }
