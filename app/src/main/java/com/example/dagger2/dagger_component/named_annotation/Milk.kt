@@ -1,4 +1,4 @@
-package com.example.dagger2.dagger_component
+package com.example.dagger2.dagger_component.named_annotation
 
 import javax.inject.Qualifier
 
@@ -6,6 +6,6 @@ import javax.inject.Qualifier
 @Qualifier
 @MustBeDocumented
 @kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
-annotation class Sugar(
-    val value: String = "sugar"
+annotation class Milk(
+    val value: String = "milk"
 )

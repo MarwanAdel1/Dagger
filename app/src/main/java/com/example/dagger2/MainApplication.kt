@@ -1,19 +1,19 @@
 package com.example.dagger2
 
 import android.app.Application
-import com.example.dagger2.dagger_component.CoffeeComponent
-import com.example.dagger2.dagger_component.DaggerCoffeeComponent
+import com.example.dagger2.dagger_component.AppComponent
+import com.example.dagger2.dagger_component.DaggerAppComponent
 
 class MainApplication : Application() {
-    private lateinit var daggerCoffeeComponent: CoffeeComponent
+    private lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
-        daggerCoffeeComponent =
-            DaggerCoffeeComponent.builder().sugar(2).milk(4).build()
+
+        appComponent = DaggerAppComponent.create()
     }
 
-    fun getDaggerCoffeeComponent(): CoffeeComponent {
-        return daggerCoffeeComponent
+    fun getDaggerAppComponent(): AppComponent {
+        return appComponent
     }
 }

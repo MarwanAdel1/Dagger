@@ -1,10 +1,12 @@
 package com.example.dagger2
 
 import android.util.Log
-import com.example.dagger2.dagger_component.Milk
-import com.example.dagger2.dagger_component.Sugar
+import com.example.dagger2.dagger_component.named_annotation.Milk
+import com.example.dagger2.dagger_component.named_annotation.Sugar
+import com.example.dagger2.dagger_component.scope_annotation.ActivityScope
 import javax.inject.Inject
 
+@ActivityScope
 class Coffee @Inject constructor(
     val river: River,
     @Sugar private val sugar: Int,

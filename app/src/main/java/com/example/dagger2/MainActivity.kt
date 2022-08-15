@@ -3,6 +3,7 @@ package com.example.dagger2
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dagger2.dagger_component.DaggerCoffeeComponent
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -10,6 +11,9 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var coffee: Coffee // field injection
+
+    @Inject
+    lateinit var coffee2: Coffee
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,19 +30,29 @@ class MainActivity : AppCompatActivity() {
 //        val daggerCoffeeComponent =
 //            DaggerCoffeeComponent.builder().coffeeModule(CoffeeModule(sugar = 3)).build()
 
-        val daggerCoffeeComponent = (application as MainApplication).getDaggerCoffeeComponent()
+        val appComponent = (application as MainApplication).getDaggerAppComponent()
 
-        val cof = daggerCoffeeComponent.getCoffeeInstance()
+        val coffeeComponent =
+            DaggerCoffeeComponent.builder().sugar(2).milk(4).appComponent(appComponent).build()
+        coffeeComponent.inject(this)
+
         Log.i(
             TAG,
-            "onCreate: Module: ${cof.getCustomCoffee()}"
+            "onCreate: Module: ${coffee.getCustomCoffee()}"
         )
 
         Log.i(
             TAG,
-            "onCreate: \n Coffee : $cof" +
-                    "\nFarm : ${cof.myCustomFarm}" +
-                    "\nRiver : ${cof.river}"
+            "onCreate: \nCoffee 1 : $coffee" +
+                    "\nFarm : ${coffee.myCustomFarm}" +
+                    "\nRiver : ${coffee.river}"
+        )
+
+        Log.i(
+            TAG,
+            "onCreate: \nCoffee 2 : $coffee2" +
+                    "\nFarm : ${coffee2.myCustomFarm}" +
+                    "\nRiver : ${coffee2.river}"
         )
     }
 }
