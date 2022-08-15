@@ -12,7 +12,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val daggerCoffeeComponent = DaggerCoffeeComponent.create()
-        Log.i(TAG, "onCreate: ${daggerCoffeeComponent.getCoffeeInstance()}")  /// constructor injection
+        Log.i(TAG, "onCreate: Constructor Injection: ${daggerCoffeeComponent.getCoffeeInstance()}")  /// constructor injection
+
+        Log.i(TAG, "onCreate: Constructor Injection: ${daggerCoffeeComponent.getCoffeeInstance().getCustomCoffee()}")  /// field injection
 
     }
 }
